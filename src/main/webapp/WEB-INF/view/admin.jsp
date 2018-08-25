@@ -22,4 +22,14 @@
             <a href="<c:url value="/admin/productInventory" /> "/>Product Inventory
         </h3>
 
+        <p>Here you can view,modify and check the product inventory</p>
+
+        <br><br>
+
+        <h3>
+            <a href="<c:url value="/admin/customer" /> "/>Customer Management
+        </h3>
+
+        <p>Here you can view the customer information</p>
+
         <%@ include file="/WEB-INF/view/template/footer.jsp"%>

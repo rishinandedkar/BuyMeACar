@@ -2,7 +2,13 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ include file="/WEB-INF/view/template/header.jsp"%>
 
-
+<script>
+    $(document).ready(function() {
+        $('.table').DataTable({
+            "lengthMenu": [[3, 5, 10, 25, 50, -1], [3, 5, 10, 25, 50, "All"]]
+        });
+    });
+</script>
 
 <div class="container-wrapper">
     <div class="container">
@@ -31,16 +37,16 @@
                     <td>${product.productCategory}</td>
                     <td>${product.productCondition}</td>
                     <td>${product.productPrice} USD</td>
-                    <td><a href="<spring:url value="/productList/viewProduct/${product.productId}" />">
+                    <td><a href="<spring:url value="/product/viewProduct/${product.productId}" />">
                         <span class="glyphicon glyphicon-info-sign"></span></a></td>
-                    <td><a href="<spring:url value="/productList/editProduct/${product.productId}" />">
+                    <td><a href="<spring:url value="/admin/product/editProduct/${product.productId}" />">
                         <span class="glyphicon glyphicon-pencil"></span></a></td>
-                    <td><a href="<spring:url value="/admin/productInventory/deleteProduct/${product.productId}" />">
+                    <td><a href="<spring:url value="/admin/product/deleteProduct/${product.productId}" />">
                         <span class="glyphicon glyphicon-remove"></span></a></td>
                 </tr>
             </c:forEach>
         </table>
 
-        <a href="<spring:url value="/admin/productInventory/addProduct" /> " class="btn btn-primary">Add Product</a>
+        <a href="<spring:url value="/admin/product/addProduct" /> " class="btn btn-primary">Add Product</a>
 
         <%@ include file="/WEB-INF/view/template/footer.jsp"%>

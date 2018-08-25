@@ -1,16 +1,52 @@
 package com.hellospringdemo.model;
 
-public class CartItem {
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.*;
+import java.io.Serializable;
+import java.util.List;
+
+@Entity
+@Table(name="CARTITME")
+public class CartItem implements Serializable {
+
+
+    private static final long serialVersionUID = 1656784115028888002L;
+
+    @Id
+    @GeneratedValue
+    private int cartItemId;
+
+    @ManyToOne
+    @JoinColumn(name = "cartId")
+    @JsonIgnore
+    private Cart cart;
+
+    @ManyToOne
+    @JoinColumn(name = "productId")
     private Product product;
+
     private int quantity;
     private double totalPrice;
 
-    public CartItem(){}
+    @ManyToMany(cascade=CascadeType.ALL, mappedBy="cartItems")
+    @JsonIgnore
+    private List<OrderHistory> orderHistoryList;
 
-    public CartItem(Product product) {
-        this.product = product;
-        this.quantity = 1;
-        this.totalPrice = product.getProductPrice();
+    public int getCartItemId() {
+        return cartItemId;
+    }
+
+    public void setCartItemId(int cartItemId) {
+        this.cartItemId = cartItemId;
+    }
+
+    public Cart getCart() {
+        return cart;
+    }
+
+    public void setCart(Cart cart) {
+        this.cart = cart;
     }
 
     public Product getProduct() {
@@ -35,5 +71,13 @@ public class CartItem {
 
     public void setTotalPrice(double totalPrice) {
         this.totalPrice = totalPrice;
+    }
+
+    public List<OrderHistory> getOrderHistoryList() {
+        return orderHistoryList;
+    }
+
+    public void setOrderHistoryList(List<OrderHistory> orderHistoryList) {
+        this.orderHistoryList = orderHistoryList;
     }
 }
